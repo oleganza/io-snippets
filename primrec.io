@@ -1,12 +1,25 @@
 #!/usr/bin/env io
 
-Number primrec := method( 
+Number primrec1 := method( 
   n := 1; 
   for(i, 2, self, n := n doMessage(call argAt(0) clone appendCachedArg(i))); 
   n 
 );
 
-6 primrec( * ) println
+Number primrec2 := method( 
+  n := 1; 
+  Number __iterator__ := 0
+  m := call argAt(0) clone appendArg(message(__iterator__))
+  for(i, 2, self, Number __iterator__ = i; n := n doMessage(m)); 
+  n 
+);
+
+6 primrec2(*) println
+
+# 1.0845768451690674
+# 0.4916119575500488
+Date secondsToRun(100000 primrec1( * )) println
+Date secondsToRun(100000 primrec2( * )) println
 
 /*
 http://johnnowak.com/heap/io-challenge.txt
