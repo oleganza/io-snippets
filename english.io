@@ -1,10 +1,7 @@
 #!/usr/bin/env io
 
 LangProxy := Object clone do(
-  string := ""
-  new := method(word,
-    clone do(string = word asMutable)
-  )
+  string ::= ""
   forward = method(
     string = string .. " " .. call message name
     self
@@ -13,7 +10,7 @@ LangProxy := Object clone do(
 )
 
 forward = method(
-  LangProxy new(call message name)
+  LangProxy clone setString(call message name asMutable)
 )
 
 quick brown fox jumps over the lazy dog println

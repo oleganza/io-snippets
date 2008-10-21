@@ -1,11 +1,12 @@
 #!/usr/bin/env io
-
+# oleganza
 Number primrec1 := method( 
   n := 1; 
   for(i, 2, self, n := n doMessage(call argAt(0) clone appendCachedArg(i))); 
   n 
 );
 
+# oleganza
 Number primrec2 := method( 
   n := 1; 
   Number __iterator__ := 0
@@ -14,12 +15,28 @@ Number primrec2 := method(
   n 
 );
 
-6 primrec2(*) println
+# john nowak, quag, jer (?)
+Number primrec3 := method(b, total := self; i := self - 1; while(i > 0, total = b call(i, total); i = i - 1); total)
 
-# 1.0845768451690674
-# 0.4916119575500488
+# semka
+Range
+Number primrec4 := method(
+  1 to(self) asList doMessage(message(reduce) clone appendArg(call argAt(0)))
+)
+
+6 primrec1(*) println
+6 primrec2(*) println
+6 primrec3(block(a,b,a*b)) println
+6 primrec4(*) println
+
+# 0.9516439437866211
+# 0.4484961032867432
+# 0.9579200744628906
+# 3.1186846776573488
 Date secondsToRun(100000 primrec1( * )) println
 Date secondsToRun(100000 primrec2( * )) println
+Date secondsToRun(100000 primrec3(block(a,b,a*b))) println
+Date secondsToRun(100000 primrec4( * )) println
 
 /*
 http://johnnowak.com/heap/io-challenge.txt
