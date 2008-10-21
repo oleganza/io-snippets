@@ -7,12 +7,17 @@
 
 /*
 TODO
-  1. Switch off documentation and remove it from the memory.
-  2. Search docs in the prototype in case current object has no docs
-     (useful for inspecting "instances", not "classes").
-  3. Alias for the "doc" and "man" methods in case they are shadowed by other protos.
-  4. Complex markup (paragraphs, headers, code examples)
-  5. Short inline specs (both executable and readable examples of usage)
+  * Switch off documentation and remove it from the memory.
+  * Search docs in the prototype in case current object has no docs
+    (useful for inspecting "instances", not "classes").
+  * Global search for a method among all the registered objects.
+  * docModule definition (for specifying the name of the library)
+      docModule "SGML" # for the top-level object
+      docModule "SGML Element" # for the Element object inside SGML
+  * Better API for docs to enable nice HTML generation.
+  * Alias for the "doc" and "man" methods in case they are shadowed by other protos.
+  * Complex markup (paragraphs, headers, code examples)
+  * Short inline specs (both executable and readable examples of usage)
 */
 
 Message do(
