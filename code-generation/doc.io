@@ -5,6 +5,16 @@
 # Author: Oleg Andreev (oleganza)
 # License: WTFPL
 
+/*
+TODO
+  1. Switch off documentation and remove it from the memory.
+  2. Search docs in the prototype in case current object has no docs
+     (useful for inspecting "instances", not "classes").
+  3. Alias for the "doc" and "man" methods in case they are shadowed by other protos.
+  4. Complex markup (paragraphs, headers, code examples)
+  5. Short inline specs (both executable and readable examples of usage)
+*/
+
 Message do(
   extractTail := method(
     line := self next
