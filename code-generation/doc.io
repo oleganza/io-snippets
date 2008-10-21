@@ -22,7 +22,8 @@ Object Doc := Object clone do(
   docsCollection := List clone do(
     Pair := List clone do(
       asString := method(
-        "#{first}\n\t#{second}" interpolate
+        desc := second asString split("\n") map(prependSeq("\t")) join("\n")
+        "#{first}\n#{desc}" interpolate
       )
     )
     init := method(
@@ -96,6 +97,11 @@ if(isLaunchScript,
   
     doc new(name, email, age) "Creates a new object with the specified attributes"
     doc new(mapObject) "Creates a new object with the \nattributes passed in a map object"
+    doc new(multiline) """
+      line 0
+      line 1
+      line 2
+    """
     new := method(name, email, age,
       nil
       // TODO: do something with name, email and age
