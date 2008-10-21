@@ -7,7 +7,7 @@
 
 /*
 TODO
-  * Switch off documentation and remove it from the memory.
+  * Object switchDocsOff: remove documentation from the memory and replace "doc" method with a dummy.
   * Search docs in the prototype in case current object has no docs
     (useful for inspecting "instances", not "classes").
   * Global search for a method among all the registered objects.
