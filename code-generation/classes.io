@@ -18,12 +18,12 @@ Class := Object clone do(
   clone := method(
     subclass := super(clone) 
     subclass setPrototype(prototype clone)
-    subclass prototype class := self
+    subclass prototype setClass(self)
     subclass setSuperclass(self)
     subclass
   )
   allocate := method(
-    self prototype clone setClass(self)
+    self prototype clone
   )
   new := method(
     instance := allocate
