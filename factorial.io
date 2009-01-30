@@ -8,3 +8,5 @@ Number ! := method(self*(self - 1)!) // add method to the prototype
 2! println
 3! println
 4! println
+5! println
+6! println
