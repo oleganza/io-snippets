@@ -24,5 +24,7 @@ A := Module module(
   )
 )
 
-(A C clone meth(2) == 84) println
-(A B clone meth(2) == 84) println
+if(isLaunchScript,
+  (A C clone meth(2) == 84) println
+  (A B clone meth(2) == 84) println
+)
