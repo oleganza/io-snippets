@@ -1,33 +1,33 @@
 # Originally written by Oleg Andreev, oleganza@gmail.com
 # June, 29 2008
-# This code is released as a Public Domain technology.
+# License: WTFPL
 
 Extension := Object clone do(
+  name       ::= nil
+  setupCode  ::= nil
+  revertCode ::= nil  
   new := method(name, # code
-    lib := self clone
-    lib name ::= name
-    lib setupCode  ::= call message argAt(1)
-    lib revertCode ::= call message argAt(2)
-    lib
+    self clone \
+         setName(name)  \
+         setSetupCode(call message argAt(1)) \
+         setRevertCode(call message argAt(2))
   )
   setup := method(
-    self setupCode  := call message argAt(0)
-    self
+    setSetupCode(call message argAt(0))
   )
   revert := method(
-    self revertCode  := call message argAt(0)
-    self
+    setRevertCode(call message argAt(0))
   )
   #doc Extension install(destination=nil) Runs extension's setup code against the destination object. If destination is omitted, current object is used (i.e. "call sender").
   install := method(destination,
     destination := if(destination, destination, call sender)
-    self setupCode doInContext(destination, destination)
+    setupCode doInContext(destination, destination)
     self
   )
   #doc Extension uninstall Runs extension's revert code against the destination object.
   uninstall := method(destination,
     destination := if(destination, destination, call sender)
-    self revertCode doInContext(destination, destination)
+    revertCode doInContext(destination, destination)
     self
   )
 )
@@ -41,7 +41,7 @@ if(isLaunchScript,
     Sequence removeSlot("length")
   )
   
-  # Should throw an exception "Sequence does not respond to 'length'"
+  # Should catch an exception "Sequence does not respond to 'length'"
   try( "42" length) error println
   
   # Install extension to the current scope
@@ -53,6 +53,6 @@ if(isLaunchScript,
   # Uninstall extension from the current scope
   SequenceExtension uninstall
 
-  # Should throw an exception "Sequence does not respond to 'length'"
+  # Should catch an exception "Sequence does not respond to 'length'"
   try( "42" length) error println
 )

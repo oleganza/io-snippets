@@ -15,24 +15,25 @@ Object modifier := method(
 #
 # Test
 #
+if(isLaunchScript,
+  
+  Queue := List clone do(
+    init := method(
+      self lst := list()
+    )
+    push := modifier(x,
+      lst append(x) # assuming append() does not return self
+    )
+    push2 := modifier(x, y, 
+      lst append(x) append(y)
+    )
+  )
 
-Queue := List clone do(
-  init := method(
-    self lst := list()
-  )
-  push := modifier(x,
-    lst append(x) # assuming append() does not return self
-  )
-  push2 := modifier(x, y, 
-    lst append(x) append(y)
-  )
+  q := Queue clone
+
+  q getSlot("push") println
+
+  ((q uniqueId) == (q push(1) push2(2,3) push(4) uniqueId)) println # true
+
+  q lst println # list(1,2,3,4)
 )
-
-q := Queue clone
-
-q getSlot("push") println
-
-((q uniqueId) == (q push(1) push2(2,3) push(4) uniqueId)) println # true
-
-q lst println # list(1,2,3,4)
-

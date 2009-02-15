@@ -14,7 +14,7 @@ Benchmark := Object clone do(
       self
     )
   )
-  Comparison := method do(
+  Comparison := method(
     ComparisonObject clone setContext(call sender) setArgs(call evalArgs) setArgNames(call message arguments)
   )
   ComparisonObject := Object clone do(
