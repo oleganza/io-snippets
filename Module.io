@@ -1,21 +1,25 @@
 #!/usr/bin/env io
-# oleganza 
-# July, 1 2008
+# oleganza
+# April 3, 2009
 
-Module := Object clone do(
+# Note: this file does not define Module := Object clone ... to avoid cluttering the namespace.
+# You can define your local name using:  Module := doFile("path/to/Module.io")
+
+Object clone do(
   Object := method(self)
-)
+  
+  if(isLaunchScript,
 
-A := Module clone do(
-  B := Object clone do(
-    c := method(C)
-  )
-  C := Object clone do(
-    b := method(B)
-  )
-)
+    A := clone do(
+      B := Object clone do(
+        c := method(C)
+      )
+      C := Object clone do(
+        b := method(B)
+      )
+    )
 
-if(isLaunchScript,
-  (A B c == A C) println
-  (A C b == A B) println
+    (A B c == A C) println
+    (A C b == A B) println
+  )
 )
